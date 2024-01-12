@@ -1,9 +1,10 @@
 package basic.day3;
 
 public class Employee {
-    public String number;
-    public String name;
-
+    // 成员变量私有
+    private String number;
+    private String name;
+    // 构造方法 （空参 带全部参数的）
     public Employee() {
     }
 

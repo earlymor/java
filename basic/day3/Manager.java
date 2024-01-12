@@ -1,38 +1,26 @@
 package basic.day3;
 
 public class Manager extends Employee{
-    public String number;
-    public String name;
+    private int bonus;
 
-    @Override
-    public String getNumber() {
-        return number;
+    public Manager() {
     }
 
-    @Override
-    public void setNumber(String number) {
-        this.number = number;
+    public int getBonus() {
+        return bonus;
     }
 
-    public Manager(String number, String name) {
-        this.number = number;
-        this.name = name;
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
+    public Manager(String number, String name, int bonus) {
+        super(number, name);
+        this.bonus = bonus;
     }
 
     public void work(){
         System.out.println("管理其他人");
     }
-    public void say(){
-        System.out.println(this.name + ", "+this.number);
-    }
+
 }
