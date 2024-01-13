@@ -1,4 +1,4 @@
-package basic.day3;
+package basic.day3_demo1;
 
 public class Employee {
     // 成员变量私有

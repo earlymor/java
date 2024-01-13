@@ -1,4 +1,4 @@
-package basic.day3;
+package basic.day3_demo1;
 
 public class Manager extends Employee{
     private int bonus;
