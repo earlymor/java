@@ -1,6 +1,6 @@
 package basic.day3_demo2;
 
-public class Cat extends Animal{
+public class Cat extends Animals {
     public Cat() {
     }
 

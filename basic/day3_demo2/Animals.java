@@ -1,13 +1,13 @@
 package basic.day3_demo2;
 
-public class Animal {
+public class Animals {
     private int age;
     private String color;
 
-    public Animal() {
+    public Animals() {
     }
 
-    public Animal(int age, String color) {
+    public Animals(int age, String color) {
         this.age = age;
         this.color = color;
     }

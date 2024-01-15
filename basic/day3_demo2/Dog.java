@@ -1,6 +1,6 @@
 package basic.day3_demo2;
 
-public class Dog extends Animal{
+public class Dog extends Animals {
     public Dog() {
     }
 
