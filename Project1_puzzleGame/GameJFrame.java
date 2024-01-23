@@ -1,13 +1,17 @@
 package Project1_puzzleGame;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
 // 游戏主界面
 // 宽603 高680
-public class GameJFrame extends JFrame {
+public class GameJFrame extends JFrame implements KeyListener {
     int[][] data = new int[4][4];
+    int x,y;
     public GameJFrame(){
         // 初始化界面
         initJFrame();
@@ -21,6 +25,7 @@ public class GameJFrame extends JFrame {
         // 初始化图片
         initImage();
 
+        this.addKeyListener(this);
         // 设置可见，写在最后
         this.setVisible(true);
     }
@@ -38,6 +43,10 @@ public class GameJFrame extends JFrame {
         }
         // 给二维数组赋值
         for(int i =0 ;i<temp.length;i++){
+            if(temp[i] == 0){
+                x = i%4;
+                y = i/4;
+            }
             data[i%4][i/4] = temp[i];
         }
 
@@ -45,20 +54,24 @@ public class GameJFrame extends JFrame {
 
     private void initImage() {
         // 循环加载16张图片
+        this.getContentPane().removeAll();
         for(int i = 0;i<4;i++){
             for(int j = 0 ;j<4;j++){
                 // 创建一个ImageIcon的对象
                 // 创建管理容器JLabel对象
                 int num = data[i][j];
-                JLabel jLabel = new JLabel(new ImageIcon("/home/earlymor/文档/java_project/java/Project1_puzzleGame/素材/image/animal/animal3/"+num+".jpg"));
+                JLabel jLabel = new JLabel(new ImageIcon("Project1_puzzleGame/素材/image/animal/animal3/"+num+".jpg"));
                 // 指定图片位置
-                jLabel.setBounds(105*j,105*i,105,105);
+                jLabel.setBounds(105*j+83,105*i+134,105,105);
+                jLabel.setBorder(new BevelBorder(BevelBorder.RAISED));
                 // 把容器添加到界面中
                 this.getContentPane().add(jLabel);
             }
         }
-
-
+        JLabel background = new JLabel(new ImageIcon("Project1_puzzleGame/素材/image/background.png"));
+        background.setBounds(40,40,508,560);
+        this.getContentPane().add(background);
+        this.getContentPane().repaint();
 
     }
 
@@ -108,5 +121,66 @@ public class GameJFrame extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         // 取消默认居中放置
         this.setLayout(null);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int code = e.getKeyCode();
+        if (code == 65) { // a
+            this.getContentPane().removeAll();
+            JLabel jLabel = new JLabel(new ImageIcon("Project1_puzzleGame/素材/image/animal/animal3/all.jpg"));
+            // 指定图片位置
+            jLabel.setBounds(83,134,420,420);
+            jLabel.setBorder(new BevelBorder(BevelBorder.RAISED));
+            // 把容器添加到界面中
+            this.getContentPane().add(jLabel);
+            JLabel background = new JLabel(new ImageIcon("Project1_puzzleGame/素材/image/background.png"));
+            background.setBounds(40,40,508,560);
+            this.getContentPane().add(background);
+            this.getContentPane().repaint();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int code = e.getKeyCode();
+//        System.out.println(code);
+        if(code  == 37){ // 左键
+            if(y != 3){
+                data[x][y] = data[x][y+1];
+                data[x][y+1] = 0;
+                y++;
+                initImage();
+            }
+        } else if (code == 38) { // 上键
+            if(x != 3){
+                data[x][y] = data[x+1][y];
+                data[x+1][y] = 0;
+                x++;
+                initImage();
+            }
+        }else if (code == 39) { // 右键
+            if(y != 0){
+                data[x][y] = data[x][y-1];
+                data[x][y-1] = 0;
+                y--;
+                initImage();
+            }
+        }else if (code == 40) { // 下键
+            if(x != 0){
+                data[x][y] = data[x-1][y];
+                data[x-1][y] = 0;
+                x--;
+                initImage();
+            }
+        } else if (code == 65) {
+            initImage();
+        }
+
     }
 }
