@@ -55,6 +55,11 @@ public class GameJFrame extends JFrame implements KeyListener {
     private void initImage() {
         // 循环加载16张图片
         this.getContentPane().removeAll();
+        if(victory()){
+            JLabel winJlabel = new JLabel(new ImageIcon("Project1_puzzleGame/素材/image/win.png"));
+            winJlabel.setBounds(203,283,197,73);
+            this.getContentPane().add(winJlabel);
+        }
         for(int i = 0;i<4;i++){
             for(int j = 0 ;j<4;j++){
                 // 创建一个ImageIcon的对象
@@ -73,6 +78,18 @@ public class GameJFrame extends JFrame implements KeyListener {
         this.getContentPane().add(background);
         this.getContentPane().repaint();
 
+    }
+
+    private boolean victory() {
+        for (int i = 0;i<4;i++){
+            for(int j = 0;j<4;j++){
+                int num = i*4+j+1;
+                if(data[i][j]!=num){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void initJMenu() {
@@ -148,6 +165,9 @@ public class GameJFrame extends JFrame implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(victory()){
+            return;
+        }
         int code = e.getKeyCode();
 //        System.out.println(code);
         if(code  == 37){ // 左键
@@ -179,6 +199,16 @@ public class GameJFrame extends JFrame implements KeyListener {
                 initImage();
             }
         } else if (code == 65) {
+            initImage();
+        } else if (code == 87) {
+            data = new int[][]{
+                    {1,2,3,4},
+                    {5,6,7,8},
+                    {9,10,11,12},
+                    {13,14,15,16}
+            };
+            x = 3;
+            y = 3;
             initImage();
         }
 
