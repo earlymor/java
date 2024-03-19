@@ -20,9 +20,6 @@ public class FuntionReferDemo {
 
         // 方法引用
         Function<String, Integer> parser2 = Integer::parseInt;
-        arrayList.stream()
-                .filter()
-                .collect(Collectors.toMap())
 
     }
     public static Integer
