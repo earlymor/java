@@ -22,5 +22,5 @@ public class FuntionReferDemo {
         Function<String, Integer> parser2 = Integer::parseInt;
 
     }
-    public static Integer
+
 }
